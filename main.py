@@ -35,8 +35,16 @@ def makeLeague(listPlayers):
     dCounter = 0
     rCounter = 0
     newCounter= 0
-    for player in listPlayers:
-        if player['Soccer Experience'] == 'YES' and sCounter < 3:
+    #testing doing hight bonus
+    #hieght counter
+    hi_counter = 0
+    for player in listPlayers:                           #this loop is for the bonus round nothing else
+        hi_counter = hi_counter + int(player['Height (inches)'])
+    print(hi_counter)       # testing counter amount
+    print(hi_counter/len(listPlayers))     #understanding the right hight of each team
+
+    for player in listPlayers:   #this loops check if a user is expreinced or not and spliit the teams equaily
+        if player['Soccer Experience'] == 'YES' and sCounter < 3:      #this 3 ifs are incharge of experienced players
             sharks.append(player)
             sCounter += 1
         elif player['Soccer Experience'] == 'YES' and dCounter < 3:
@@ -45,7 +53,7 @@ def makeLeague(listPlayers):
         elif player['Soccer Experience'] == 'YES' and rCounter < 3:
             raptors.append(player)
             rCounter += 1
-        else:
+        else:                                 #this part  is incharge of none soccer experience people
             if newCounter < 3:
                 sharks.append(player)
                 newCounter += 1
@@ -88,16 +96,21 @@ def saveLeagueLetters(playerDicts, letter):
         saveToDisk(player,fixed_letter)
 
 
-
-#testing
-league = (makeLeague(intoDict('soccer_players.csv')))
-print(len(league[2]))
-################3more testing
-playerDict = intoDict('soccer_players.csv') #create a functional dictonary
-#create propper fixed letter
-letter = write_letter(playerDict[0],'hello {GurdianName}, please bring {name} arrive at the requested time: {time}, to this {location}')
-#save 1 letter to disk
-saveToDisk(playerDict[0], letter)
-#save all players
-letterx = 'hello {GurdianName}, please bring {name} arrive at the requested time: {time}, to this {location}'
-saveLeagueLetters(playerDict, letterx)
+if __name__ == "__main__":
+    #testing and making sure nothing will run wtih out a reason
+    league = (makeLeague(intoDict('soccer_players.csv')))
+    print(len(league[1]))
+    print(league[1])
+    ################3more testing
+    playerDict = intoDict('soccer_players.csv') #create a functional dictonary
+    #create propper fixed letter
+    letter = write_letter(playerDict[0],'hello {GurdianName}, please bring {name} arrive at the requested time: {time}, to this {location}')
+    #save 1 letter to disk
+    saveToDisk(playerDict[0], letter)
+    #save all players
+    letterx = 'hello {GurdianName}, please bring {name} arrive at the requested time: {time}, to this {location}'
+    saveLeagueLetters(playerDict, letterx)
+    newt = 0
+    for item in league[0]:
+        newt = newt + int(item['Height (inches)'])
+    print(newt/len(league[0]))
