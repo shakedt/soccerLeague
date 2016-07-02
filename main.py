@@ -111,6 +111,15 @@ if __name__ == "__main__":
     letterx = 'hello {GurdianName}, please bring {name} arrive at the requested time: {time}, to this {location}'
     saveLeagueLetters(playerDict, letterx)
     newt = 0
-    for item in league[0]:
+    for item in league[0]:    #calculating the height of eac team
         newt = newt + int(item['Height (inches)'])
+    newt2 = 0
+    for item in league[1]:    #calculating the height of eac team
+        newt2 = newt2 + int(item['Height (inches)'])
+    newt3 = 0
+    for item in league[2]:    #calculating the height of eac team
+        newt3 = newt3 + int(item['Height (inches)'])
+
     print(newt/len(league[0]))
+    print(newt2/len(league[1]))
+    print(newt3/len(league[2]))
