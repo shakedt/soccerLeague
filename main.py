@@ -100,7 +100,7 @@ if __name__ == "__main__":
     #testing and making sure nothing will run wtih out a reason
     league = (makeLeague(intoDict('soccer_players.csv')))
     print(len(league[1]))
-    print(league[1])
+    print(league[2])
     ################3more testing
     playerDict = intoDict('soccer_players.csv') #create a functional dictonary
     #create propper fixed letter
